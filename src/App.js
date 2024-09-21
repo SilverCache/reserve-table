@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Nav />
       <Main />
-      < Footer />
+      <Footer />
     </div>
   );
 }
