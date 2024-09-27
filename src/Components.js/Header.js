@@ -1,6 +1,11 @@
+import React from 'react';
+import logo from './Images.js/Logo.svg';
+
+console. log(logo);
+
 function Header() {
   return (
-    <h1>This is my header</h1>
+    <img src={logo} alt='Logo' />
   )
 }
 
