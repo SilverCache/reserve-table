@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 import Header from './Components.js/Header';
 import Nav from './Components.js/Nav';
@@ -7,12 +7,12 @@ import Footer from './Components.js/Footer';
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <Nav />
       <Main />
       <Footer />
-    </div>
+    </>
   );
 }
 
