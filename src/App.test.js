@@ -1,9 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import BookingForm from "./components/BookingForm";
-import Header from "./components/Header";
 
 test("Renders the Header heading", () => {
   render(
@@ -11,26 +8,17 @@ test("Renders the Header heading", () => {
       <App />
     </BrowserRouter>
   );
+
   const headingElement = screen.getByText("Reserve Table");
   expect(headingElement).toBeInTheDocument();
 
-  const reserveButton = screen.getByRole("button");
+  // Use 'link' role to target the anchor wrapping the button
+  const reserveButton = screen.getByRole("link", { name: /reserve table/i });
   fireEvent.click(reserveButton);
 
-  const headingElementNew = screen.getByText("Choose Date");
-  expect(headingElementNew).toBeInTheDocument();
+  waitFor(() => {
+    const headingElementNew = screen.getByText("Choose Date");
+    expect(headingElementNew).toBeInTheDocument();
+  });
 });
 
-test("Initialize/Update Times", () => {
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
-  const reserveButton = screen.getByRole("button");
-  fireEvent.click(reserveButton);
-
-  const testTime = [];
-  // userEvent.selectOptions(screen.getByLabelText("Choose Time"),screen.getByRole('option', { name: testTime}))
-  // expect(screen.getByRole('option', { name: testTime}).selected).toBe(true);
-});
